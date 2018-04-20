@@ -1,0 +1,41 @@
+{
+    "variables": {
+        "az_client_id": "{{env `AZURE_PACKER_CLIENT_ID`}}",
+        "az_client_secret": "{{env `AZURE_PACKER_CLIENT_SECRET`}}",
+        "az_tenant_id": "{{env `AZURE_PACKER_TENANT_ID`}}",
+        "az_subscription_id": "{{env `AZURE_SUBSCRIPTION_ID`}}"
+    },
+    "builders": [
+        {
+            "type": "azure-arm",
+            "client_id": "{{user `az_client_id`}}",
+            "client_secret": "{{user `az_client_secret`}}",
+            "tenant_id": "{{user `az_tenant_id`}}",
+            "subscription_id": "{{user `az_subscription_id`}}",
+            "managed_image_resource_group_name": "PackerTest",
+            "managed_image_name": "myPackerImage",
+            "os_type": "Linux",
+            "image_publisher": "Canonical",
+            "image_offer": "UbuntuServer",
+            "image_sku": "16.04-LTS",
+            "azure_tags": {
+                "dept": "ServiceClient",
+                "task": "Custom VM Images"
+            },
+            "location": "West Europe",
+            "vm_size": "Standard_DS2_v2"
+        }
+    ],
+    "provisioners": [
+        {
+            "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E sh '{{ .Path }}'",
+            "inline": [
+                "apt-get update",
+                "apt-get upgrade -y",
+                "apt-get install nginx -y"
+            ],
+            "inline_shebang": "/bin/sh -x",
+            "type": "shell"
+        }
+    ]
+}
