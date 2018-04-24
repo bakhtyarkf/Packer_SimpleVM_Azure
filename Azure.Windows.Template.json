@@ -5,7 +5,7 @@
         "az_tenant_id": "{{env `AZURE_PACKER_TENANT_ID`}}",
         "az_subscription_id": "{{env `AZURE_SUBSCRIPTION_ID`}}",
         "az_rg": "{{env `AZURE_PACKER_RG`}}",
-        "az_location": "{{env `AZURE_PACKER_Location`}}"
+        "az_location": "{{env `AZURE_PACKER_LOCATION`}}"
     },
     "builders": [
         {

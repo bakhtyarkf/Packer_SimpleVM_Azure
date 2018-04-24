@@ -7,4 +7,4 @@ export AZURE_PACKER_CLIENT_SECRET=$(jq '.client_secret' <<< "$rbac" | sed 's/\"/
 export AZURE_PACKER_TENANT_ID=$(jq '.tenant_id' <<< "$rbac" | sed 's/\"//g')
 export AZURE_SUBSCRIPTION_ID=$(jq '.subscription_id' <<< "$sid" | sed 's/\"//g')
 export AZURE_PACKER_RG=$1
-export AZURE_PACKER_Location=$2
+export AZURE_PACKER_LOCATION=$2
