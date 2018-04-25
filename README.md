@@ -6,4 +6,4 @@ or on windows
 
 ./run.ps1 "Your Resource groupname" "Your prefered Location"
 
-packer build <theTemplate>
+packer build "theTemplateName"
